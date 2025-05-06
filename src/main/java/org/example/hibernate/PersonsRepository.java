@@ -1,25 +1,16 @@
 package org.example.hibernate;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public class PersonsRepository {
-    @PersistenceContext
-    private EntityManager entityManager;
+public interface PersonsRepository extends JpaRepository<Person, Account> {
+    public List<Person> findByCityOfLiving(String city);
 
-    public PersonsRepository(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    public List<Person> findByAccountAgeLessThanOrderByAccountAgeAsc(Integer age);
 
-    public List<Person> getPersonsByCity(String city){
-        String jpql = "SELECT p FROM Person p WHERE p.cityOfLiving = :city";
-        TypedQuery<Person> query = entityManager.createQuery(jpql, Person.class);
-        query.setParameter("city", city);
-        return query.getResultList();
-    }
+    public Optional<Person> findByAccountNameAndAccountSurname(String name, String surname);
 }
