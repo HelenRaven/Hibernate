@@ -17,7 +17,7 @@ public class PersonsRepository {
     }
 
     public List<Person> getPersonsByCity(String city){
-        String jpql = "SELECT p FROM Person p WHERE p.city_of_living = :city";
+        String jpql = "SELECT p FROM Person p WHERE p.cityOfLiving = :city";
         TypedQuery<Person> query = entityManager.createQuery(jpql, Person.class);
         query.setParameter("city", city);
         return query.getResultList();

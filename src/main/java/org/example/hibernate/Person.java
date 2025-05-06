@@ -12,15 +12,18 @@ public class Person {
     @EmbeddedId
     private Account account;
 
-    @Column
-    private String city_of_living;
+    @Column(name = "city_of_living")
+    private String cityOfLiving;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     public Person() {
     }
 
-    public Person(Account account, String city_of_living) {
+    public Person(Account account, String cityOfLiving) {
         this.account = account;
-        this.city_of_living = city_of_living;
+        this.cityOfLiving = cityOfLiving;
     }
 
     public Account getAccount() {
@@ -31,11 +34,19 @@ public class Person {
         this.account = account;
     }
 
-    public String getCity_of_living() {
-        return city_of_living;
+    public String getCityOfLiving() {
+        return cityOfLiving;
     }
 
-    public void setCity_of_living(String city_of_living) {
-        this.city_of_living = city_of_living;
+    public void setCityOfLiving(String cityOfLiving) {
+        this.cityOfLiving = cityOfLiving;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
